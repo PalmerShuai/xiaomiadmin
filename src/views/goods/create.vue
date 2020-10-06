@@ -15,12 +15,6 @@
   <el-form-item label="商品名称">
     <el-input v-model="form.title"></el-input>
   </el-form-item>
-   <el-form-item label="商品种类">
-    <el-select v-model="form.region" placeholder="请选择商品种类">
-      <el-option label="区域一" value="shanghai"></el-option>
-      <el-option label="区域二" value="beijing"></el-option>
-    </el-select>
-  </el-form-item>
    <el-form-item label="商品价格">
     <el-input v-model="form.price"></el-input>
   </el-form-item>
@@ -47,12 +41,10 @@ export default {
     return {
 imageUrl:'',
 form:{
-  name:'',
   title:'',
   desc:'',
-price:'',
-kind:'',
-hot:''
+  price:'',
+  hot:''
 },
     }
   },
@@ -82,7 +74,22 @@ hot:''
         return isJPG && isLt2M;
       },
        onSubmit() {
-        console.log('submit!');
+        axios.post('/goodsdata',{
+            title: this.form.title,
+       imgurl:this.imageUrl,
+        price:this.form.price,
+       desc: this.form.desc,
+        hot: this.form.hot}).then(res=>{
+         if(res.data.code=20000){
+            this.$message({
+          message: res.data.msg,
+          type: 'success'
+        });
+        this.$router.push({
+          path:'/goods/list'
+        })
+          }
+        })
       }
     }
 }

@@ -270,12 +270,12 @@ export const asyncRoutes = [{
                 meta: { title: '添加商品', icon: 'edit' }
             },
             {
-                path: 'edit/:id(\\d+)',
+                path: 'edit/:id',
                 component: () =>
                     import ('@/views/goods/edit'),
                 name: 'EditGoods',
                 meta: { title: '修改商品', noCache: true, activeMenu: '/goods/list' },
-                hidden: true
+
             },
             {
                 path: 'list',
@@ -286,36 +286,71 @@ export const asyncRoutes = [{
             }
         ]
     },
-     {
-      path: '/goodskind',
-      component: Layout,
-      redirect: '/goodskind/list',
-      name: 'Goodskind',
-      meta: {
-        title: '商品种类',
-        icon: 'el-icon-s-help'
-      },
-      children: [
-        {
-          path: 'create',
-          component: () => import('@/views/goodskind/create'),
-          name: 'CreateGoodskind',
-          meta: { title: '新增商品种类', icon: 'edit' }
+    {
+        path: '/goodskind',
+        component: Layout,
+        redirect: '/goodskind/list',
+        name: 'Goodskind',
+        meta: {
+            title: '商品种类',
+            icon: 'el-icon-s-help'
         },
-        {
-          path: 'edit/:id(\\d+)',
-          component: () => import('@/views/goodskind/edit'),
-          name: 'EditGoodskind',
-          meta: { title: '修改商品种类', noCache: true, activeMenu: '/goodskind/list' },
-          hidden: true
+        children: [{
+                path: 'create',
+                component: () =>
+                    import ('@/views/goodskind/create'),
+                name: 'CreateGoodskind',
+                meta: { title: '新增商品种类', icon: 'edit' }
+            },
+            {
+                path: 'edit/:id(\\d+)',
+                component: () =>
+                    import ('@/views/goodskind/edit'),
+                name: 'EditGoodskind',
+                meta: { title: '修改商品种类', noCache: true, activeMenu: '/goodskind/list' },
+                hidden: true
+            },
+            {
+                path: 'list',
+                component: () =>
+                    import ('@/views/goodskind/list'),
+                name: 'GoodskindList',
+                meta: { title: '商品种类列表', icon: 'list' }
+            }
+        ]
+    },
+    {
+        path: '/car',
+        component: Layout,
+        redirect: '/car/list',
+        name: 'Car',
+        meta: {
+            title: '购物车',
+            icon: 'el-icon-s-help'
         },
-        {
-          path: 'list',
-          component: () => import('@/views/goodskind/list'),
-          name: 'GoodskindList',
-          meta: { title: '商品种类列表', icon: 'list' }
-        }
-      ]
+        children: [{
+                path: 'create',
+                component: () =>
+                    import ('@/views/car/create'),
+                name: 'Createar',
+                meta: { title: '新增页面', icon: 'edit' }
+            },
+            {
+                path: 'edit/:id',
+                component: () =>
+                    import ('@/views/car/edit'),
+                name: 'EditCar',
+                meta: { title: '修改页面', noCache: true, activeMenu: '/user/list' },
+                hidden: true
+            },
+            {
+                path: 'list',
+                component: () =>
+                    import ('@/views/car/list'),
+                name: 'CarList',
+                meta: { title: '购物车列表', icon: 'list' }
+            }
+        ]
     },
     // {
     //   path: '/tab',
